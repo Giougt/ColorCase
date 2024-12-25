@@ -18,22 +18,28 @@ document.head.appendChild(metaCharset);
 document.head.appendChild(metaViewport);
 document.head.appendChild(title);
 
-//body part 
+// body part 
+const allCase = document.createElement("div");
 
-allCase = document.createElement("div");
-test = document.createElement("p");
-test.innerText = "hello"
-
-
-Object.assign(test.style, {
-    backgroundColor: "white",
-    padding: "10px",
-    border: "10px solid black",
-    width: "10px",
-    height: "10px"
+// style display cube 
+Object.assign(allCase.style, {
+    display: "grid",
+    gridTemplateColumns: "repeat(10, 20px)",
+    gridTemplateRows: "repeat(10, 20px)",
+    gap: "2px" 
 });
 
-//append in document
-allCase.appendChild(test);
-document.body.appendChild(allCase);
+// create 100 cubes 
+for (let i = 0; i < 100; i++) {
+    const test = document.createElement("div");
+    Object.assign(test.style, {
+        backgroundColor: "white",
+        border: "1px solid black", 
+        width: "20px",
+        height: "20px"
+    });
+    allCase.appendChild(test);
+}
 
+// append in document
+document.body.appendChild(allCase);
