@@ -29,6 +29,16 @@ Object.assign(allCase.style, {
     gap: "2px" 
 });
 
+//align cube in center of body 
+Object.assign(document.body.style, {
+    display: "flex",
+    justifyContent: "center", 
+    alignItems: "center", 
+    height: "100vh", 
+    margin: "0", 
+    backgroundColor: "#727874" 
+});
+
 // create 100 cubes 
 for (let i = 0; i < 100; i++) {
     const test = document.createElement("div");
