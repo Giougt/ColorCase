@@ -52,6 +52,7 @@ Object.assign(wrapper.style, {
 // create 100 cubes 
 for (let i = 0; i < 100; i++) {
     const test = document.createElement("div");
+    test.id= i;
     Object.assign(test.style, {
         backgroundColor: "white",
         border: "1px solid black", 
@@ -81,9 +82,14 @@ wrapper.appendChild(colorPicker);
 // append in document all
 document.body.appendChild(wrapper);
 
+allCase.addEventListener("click", (event) => {
+    if (event.target && event.target.style) {
+        event.target.style.backgroundColor = choiceColor(); 
+    }
+});
+
 //stock color
 let color = "";
-
 function choiceColor(){
     colorPicker.addEventListener("change", (event) => {
         if (event.target.value !== "#ffffff"){
@@ -94,3 +100,4 @@ function choiceColor(){
         }
     })
 };
+
