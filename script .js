@@ -84,7 +84,12 @@ document.body.appendChild(wrapper);
 
 allCase.addEventListener("click", (event) => {
     if (event.target && event.target.style) {
-        event.target.style.backgroundColor = choiceColor(); 
+        if (color){
+            event.target.style.backgroundColor = color; 
+        }
+        else{
+            console.log("error, color picker")
+        }
     }
 });
 
@@ -101,3 +106,4 @@ function choiceColor(){
     })
 };
 
+choiceColor();
