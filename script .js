@@ -86,6 +86,11 @@ let color = "";
 
 function choiceColor(){
     colorPicker.addEventListener("change", (event) => {
-        color = event.target.value
+        if (event.target.value !== "#ffffff"){
+            color = event.target.value
+        }
+        else{
+            alert("color is white, impossible")
+        }
     })
 };
