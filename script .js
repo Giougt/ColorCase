@@ -61,3 +61,96 @@ allCase.addEventListener("click", (event) => {
         event.target.style.backgroundColor = choiceColor(); 
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// New code for Tic-Tac-Toe
+const ticTacToe = document.createElement("div");
+
+// style display Tic-Tac-Toe
+Object.assign(ticTacToe.style, {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 60px)",
+    gridTemplateRows: "repeat(3, 60px)",
+    gap: "5px",
+    position: "absolute",
+    left: "20px",
+    top: "20px"
+});
+
+// create 9 cells for Tic-Tac-Toe
+for (let i = 0; i < 9; i++) {
+    const cell = document.createElement("div");
+    cell.id = `cell-${i}`;
+    Object.assign(cell.style, {
+        backgroundColor: "white",
+        border: "2px solid black",
+        width: "60px",
+        height: "60px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: "24px",
+        cursor: "pointer"
+    });
+    ticTacToe.appendChild(cell);
+}
+
+// append Tic-Tac-Toe in document
+document.body.appendChild(ticTacToe);
+
+let currentPlayer = "X";
+const cells = Array.from(ticTacToe.children);
+
+cells.forEach(cell => {
+    cell.addEventListener("click", () => {
+        if (cell.textContent === "") {
+            cell.textContent = currentPlayer;
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+        }
+    });
+});
