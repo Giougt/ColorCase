@@ -145,15 +145,39 @@ for (let i = 0; i < 9; i++) {
 // append Tic-Tac-Toe in document
 document.body.appendChild(ticTacToe);
 
-let currentPlayer = "X";
+let FirstPlayer = "X";
 const cells = Array.from(ticTacToe.children);
 
 cells.forEach(cell => {
     cell.addEventListener("click", () => {
         if (cell.textContent === "") {
-            cell.textContent = currentPlayer;
-            currentPlayer = currentPlayer === "X" ? "O" : "X";
+            cell.textContent = FirstPlayer;
+            if (checkWinner()) {
+                alert(`${FirstPlayer} a gagné !`);
+                resetGame();
+            } else {
+                FirstPlayer = FirstPlayer === "X" ? "O" : "X";
+            }
         }
     });
 });
 
+function checkWinner() {
+    const winningCombinations = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+        [0, 4, 8], [2, 4, 6]             // diagonals
+    ];
+
+    return winningCombinations.some(combination => {
+        const [a, b, c] = combination;
+        return cells[a].textContent === FirstPlayer &&
+               cells[a].textContent === cells[b].textContent &&
+               cells[a].textContent === cells[c].textContent;
+    });
+}
+
+function resetGame() {
+    cells.forEach(cell => cell.textContent = "");
+    FirstPlayer = "X";
+}
