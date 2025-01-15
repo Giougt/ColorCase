@@ -210,8 +210,7 @@ allCase.addEventListener("mouseover", (event) => {
         } 
         if (checkAllCasesFilled()) {
             alert("All case file !");
-            const allCases = Array.from(allCase.children);
-            return allCases.every(caseElement => caseElement.style.backgroundColor = "white");
+            resetGrid();
         }else {
             console.log("error, color picker");
         }
@@ -222,4 +221,14 @@ allCase.addEventListener("mouseover", (event) => {
 function checkAllCasesFilled() {
     const allCases = Array.from(allCase.children);
     return allCases.every(caseElement => caseElement.style.backgroundColor !== "white");
+}
+
+// function for reset the grid with white
+
+function resetGrid() {
+    const allCases = Array.from(allCase.children);
+    allCases.forEach(caseElement => {
+        caseElement.style.backgroundColor = "white"; // Reset each case to white
+    });
+    console.log("Grid has been reset.");
 }
