@@ -29,12 +29,10 @@ Object.assign(allCase.style, {
     gap: "2px" 
 });
 
-
 //body style 
 Object.assign(document.body.style, {
     margin: "0"
 });
-
 
 //parent container
 const wrapper = document.createElement("div");
@@ -87,19 +85,22 @@ allCase.addEventListener("click", (event) => {
         if (color){
             event.target.style.backgroundColor = color; 
         }
+        if (checkAllCasesFilled()) {
+            alert("All case file !");
+        }
         else{
             console.log("error, color picker")
         }
     }
 });
 
-
 //stock color
 let color = "";
 function choiceColor(){
     colorPicker.addEventListener("change", (event) => {
         if (event.target.value !== "#ffffff"){
-            color = event.target.value
+            color = event.target.value;
+            console.log("Selected color:", color); // Debugging statement
         }
         else{
             alert("color is white, impossible")
@@ -108,7 +109,6 @@ function choiceColor(){
 };
 
 choiceColor();
-
 
 // New code for Tic-Tac-Toe
 const ticTacToe = document.createElement("div");
@@ -177,7 +177,58 @@ function checkWinner() {
     });
 }
 
+// reset all the table 
 function resetGame() {
     cells.forEach(cell => cell.textContent = "");
     FirstPlayer = "X";
+}
+
+// eventlistener for painting 
+
+let leftMouseDown = false; 
+
+// Track right mouse button state
+document.addEventListener("mousedown", (event) => {
+    if (event.button === 0) { // Right mouse button
+        leftMouseDown = true; 
+        console.log("Right mouse button down:", leftMouseDown); // Debugging statement
+    }
+});
+
+document.addEventListener("mouseup", (event) => {
+    if (event.button === 0) { // Right mouse button
+        leftMouseDown = false;
+        console.log("Right mouse button up:", leftMouseDown); // Debugging statement
+    }
+});
+
+// Change color on mouseover when right mouse button is held down
+allCase.addEventListener("mouseover", (event) => {
+    if (leftMouseDown && event.target && event.target.style) {
+        if (color) {
+            event.target.style.backgroundColor = color;
+        } 
+        if (checkAllCasesFilled()) {
+            alert("All case file !");
+            resetGrid();
+        }else {
+            console.log("error, color picker");
+        }
+    }
+});
+
+// function for check if allcase are complete
+function checkAllCasesFilled() {
+    const allCases = Array.from(allCase.children);
+    return allCases.every(caseElement => caseElement.style.backgroundColor !== "white");
+}
+
+// function for reset the grid with white
+
+function resetGrid() {
+    const allCases = Array.from(allCase.children);
+    allCases.forEach(caseElement => {
+        caseElement.style.backgroundColor = "white"; // Reset each case to white
+    });
+    console.log("Grid has been reset.");
 }
