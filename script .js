@@ -210,6 +210,8 @@ allCase.addEventListener("mouseover", (event) => {
         } 
         if (checkAllCasesFilled()) {
             alert("All case file !");
+            const allCases = Array.from(allCase.children);
+            return allCases.every(caseElement => caseElement.style.backgroundColor = "white");
         }else {
             console.log("error, color picker");
         }
