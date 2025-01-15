@@ -85,6 +85,9 @@ allCase.addEventListener("click", (event) => {
         if (color){
             event.target.style.backgroundColor = color; 
         }
+        if (checkAllCasesFilled()) {
+            alert("All case file !");
+        }
         else{
             console.log("error, color picker")
         }
@@ -204,8 +207,17 @@ allCase.addEventListener("mouseover", (event) => {
     if (leftMouseDown && event.target && event.target.style) {
         if (color) {
             event.target.style.backgroundColor = color;
-        } else {
+        } 
+        if (checkAllCasesFilled()) {
+            alert("All case file !");
+        }else {
             console.log("error, color picker");
         }
     }
 });
+
+// function for check if allcase are complete
+function checkAllCasesFilled() {
+    const allCases = Array.from(allCase.children);
+    return allCases.every(caseElement => caseElement.style.backgroundColor !== "white");
+}
