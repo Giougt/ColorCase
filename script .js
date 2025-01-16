@@ -77,9 +77,25 @@ Object.assign(colorPicker.style, {
 // add input container parent
 wrapper.appendChild(colorPicker);
 
+//bouton for erase 
+const eraser = document.createElement("input");
+eraser.type = "checkbox";
+eraser.title= "eraser";
+
+Object.assign(eraser.style, {
+    width: "50px",
+    height: "50px",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer"
+});
+
+// add input container parent
+wrapper.appendChild(eraser);
+
 // append in document all
 document.body.appendChild(wrapper);
-
+//
 allCase.addEventListener("click", (event) => {
     if (event.target && event.target.style) {
         if (color){
